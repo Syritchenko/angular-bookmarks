@@ -5,15 +5,19 @@ const InjectHtmlPlugin = require('inject-html-webpack-plugin');
 const fs = require('graceful-fs');
 const _ = require('lodash');
 
-
+// Get json with packages
 let sourcePlugins = JSON.parse(fs.readFileSync('./plugins.json'));
 
-/*var vendor_files = _.map(sourceGulpFile[module].vendor, function (x) { return 'public/' + x; });
-var css_files = _.map(sourceGulpFile[module].css, function (x) { return 'public/' + x; });
-var app_files = _.map(sourceGulpFile[module].app, function (x) { return 'public/' + x; });*/
-
-let vendorFiles = _.map(sourcePlugins['auth'].vendor, function (x) { return `<script src="public/${x}"></script>`; });
-let styleFiles = _.map(sourcePlugins['auth'].css, function (x) { return `<link rel="stylesheet" href="public/${x}">`; });
+// Generate url for scripts and styles
+function generateUrl(module, type) {
+	if(type == 'css') {
+		return _.map(sourcePlugins[module].css, function (x) { return `<link rel="stylesheet" href="public/${x}">`; });
+	} else if (type == 'app') {
+		return _.map(sourcePlugins[module].app, function (x) { return `<script src="public/${x}"></script>`; });
+	} else if (type == 'vendor') {
+		return _.map(sourcePlugins[module].vendor, function (x) { return `<script src="${x}"></script>`; });
+	}
+}
 
 module.exports = {
 	entry: {
@@ -31,17 +35,18 @@ module.exports = {
 			customInject:[{
 				start:'<!-- start:landlord -->',
 				end:'<!-- end:landlord -->',
-				content: vendorFiles
+				content: generateUrl('landlord', 'vendor')
 			}]
 		}),
 
 		new InjectHtmlPlugin({
 			filename:'./dist/index.html',
 			chunks:['index'],
+			processor: 10,
 			customInject:[{
 				start:'<!-- start:style -->',
 				end:'<!-- end:style -->',
-				content: styleFiles
+				content: generateUrl('auth', 'css')
 			}]
 		})
 	],
