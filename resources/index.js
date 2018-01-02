@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import printMe from './print.js';
 
+const test = 23;
+
 function component() {
 	var element = document.createElement('div');
 	var btn = document.createElement('button');

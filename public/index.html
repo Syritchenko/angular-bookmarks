@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="test">
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
@@ -7,11 +7,16 @@
 	<!-- start:style -->
 	<!-- end:style -->
 </head>
-<body>
-<h1>{{heelo}}</h1>
+<body ng-controller="someCtrl">
+<h1>{{test}}</h1>
 
-<!-- start:landlord -->
-<!-- end:landlord -->
+<!-- start:main-vendor -->
+<script src="node_modules/angular/angular.min.js"></script>
+<!-- end:main-vendor -->
+
+<!-- start:main-app -->
+<script src="app/app.js"></script>
+<!-- end:main-app -->
 <script src="./build/app.bundle.js"></script>
 </body>
 </html>

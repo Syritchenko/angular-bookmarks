@@ -1,19 +1,12 @@
 {
-  "auth": {
+  "main": {
     "css": [
-      "node_modules/angular-ui-notification/dist/angular-ui-notification.min.css",
-      "node_modules/ng-dialog/css/ngDialog.min.css",
-      "node_modules/ng-dialog/css/ngDialog-theme-default.min.css"
     ],
     "vendor": [
-      "js/socket.io.min.js",
-      "app/vendor/jquery/jquery.min.js",
-      "app/vendor/jquery-ui/jquery-ui.min.js"
+      "node_modules/angular/angular.min.js"
     ],
     "app": [
-      "app/vendor/geocomplete/jquery.geocomplete.1.4.min.js",
-      "app/modules/auth/app-auth.js",
-      "app/vendor/paging/paging.js"
+      "app/app.js"
     ]
   }
 }
