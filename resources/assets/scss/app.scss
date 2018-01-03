@@ -1,6 +1,4 @@
-.test {
-    .test2 {
-        cursor: pointer;
-        display: flex;
-    }
-}
+@import "bulma";
+@import "main";
+@import "header";
+@import "bookmarks";

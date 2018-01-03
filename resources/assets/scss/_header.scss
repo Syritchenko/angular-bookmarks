@@ -1,0 +1,13 @@
+.header {
+    background-color: rgb(51, 103, 214);
+    color: #fff;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .fa {
+        font-size: 22px;
+    }
+}

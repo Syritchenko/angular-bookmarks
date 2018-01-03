@@ -5,18 +5,67 @@
 	<title>Title</title>
 
 	<!-- start:style -->
+	<link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
 	<!-- end:style -->
+
+	<link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./build/main.css">
 </head>
 <body ng-controller="someCtrl">
-<h1>{{test}}</h1>
+
+<header class="header">
+	<h1>Bookmarks</h1>
+
+	<div class="field">
+		<div class="control">
+			<input class="input is-info" type="text" placeholder="Info input">
+		</div>
+	</div>
+
+	<i class="fa fa-cog" aria-hidden="true"></i>
+</header>
+
+<main class="main-wrap">
+	<div class="columns">
+		<div class="column is-one-quarter">
+			<aside class="menu">
+				<ul class="menu-list">
+					<li ng-repeat="category in categories">
+						<a class="menu-list-link">
+							<i class="fa fa-folder" aria-hidden="true"></i>
+							<i class="fa fa-folder-o" aria-hidden="true"></i>
+							{{category.name}}
+						</a>
+					</li>
+				</ul>
+			</aside>
+		</div>
+
+		<div class="column">
+			<section class="bookmarks">
+				<div class="inner-wrap">
+					<div class="bookmark-item" ng-repeat="bookmark in bookmarks">
+						<a class="bookmark-item-link" href="{{bookmark.url}}">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							{{bookmark.title}}
+						</a>
+
+						<i class="fa fa-cog" aria-hidden="true"></i>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</main>
 
 <!-- start:main-vendor -->
-<script src="node_modules/angular/angular.min.js"></script>
+<script src="./node_modules/angular/angular.min.js"></script>
 <!-- end:main-vendor -->
 
 <!-- start:main-app -->
 <script src="app/app.js"></script>
 <!-- end:main-app -->
-<script src="./build/app.bundle.js"></script>
+
+<script src="./build/main.js"></script>
 </body>
 </html>

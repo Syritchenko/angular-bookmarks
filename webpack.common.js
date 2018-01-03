@@ -21,14 +21,14 @@ function generateUrl(module, type) {
 
 module.exports = {
 	entry: {
-		app: [
-			'./resources/index.js',
+		main: [
+			// './resources/index.js',
 			'./resources/assets/scss/app.scss'
 		]
 	},
 
 	output: {
-		filename: '[name].bundle.js',
+		filename: '[name].css',
 		path: path.resolve(__dirname, './public/build')
 	},
 

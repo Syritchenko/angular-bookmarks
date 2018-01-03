@@ -1,0 +1,27 @@
+.menu-list-link {
+    font-size: 18px;
+
+    .fa {
+        margin-right: 10px;
+    }
+
+    .fa-folder-o {
+        display: none;
+    }
+
+    &.active {
+        color: rgb(51, 103, 214);
+
+        .fa-folder {
+            display: none;
+        }
+
+        .fa-folder-o {
+            display: inline-block;
+        }
+    }
+
+    &:hover {
+        color: rgb(51, 103, 214) !important;
+    }
+}
