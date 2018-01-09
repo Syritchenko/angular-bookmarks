@@ -1,4 +1,12 @@
-.menu-list-link {
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
+.menu-list-item {
     font-size: 18px;
 
     .fa {
@@ -10,7 +18,9 @@
     }
 
     &.active {
-        color: rgb(51, 103, 214);
+        .menu-list-link {
+            color: rgb(51, 103, 214);
+        }
 
         .fa-folder {
             display: none;
@@ -22,6 +32,8 @@
     }
 
     &:hover {
-        color: rgb(51, 103, 214) !important;
+        .menu-list-link {
+            color: rgb(51, 103, 214) !important;
+        }
     }
 }

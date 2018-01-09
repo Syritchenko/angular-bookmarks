@@ -6,6 +6,8 @@
 
 	<!-- start:style -->
 	<link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
+	<link rel="stylesheet" href="./node_modules/ng-dialog/css/ngDialog.min.css">
+	<link rel="stylesheet" href="./node_modules/ng-dialog/css/ngDialog-theme-default.min.css">
 	<!-- end:style -->
 
 	<link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
@@ -18,20 +20,22 @@
 
 	<div class="field">
 		<div class="control">
-			<input class="input is-info" type="text" placeholder="Info input">
+			<input class="input is-info" ng-model="search" type="text" placeholder="Info input">
 		</div>
 	</div>
 
-	<i class="fa fa-cog" aria-hidden="true"></i>
+	<div class="dropdown" context-menu="createOptions" context-menu-on="click"> <!-- .is-active -->
+		<i class="fa fa-cog" aria-hidden="true"></i>
+	</div>
 </header>
 
-<main class="main-wrap">
+<main class="main-wrap" ng-init="currentCategory.name = 'Development'">
 	<div class="columns">
 		<div class="column is-one-quarter">
 			<aside class="menu">
 				<ul class="menu-list">
-					<li ng-repeat="category in categories">
-						<a class="menu-list-link">
+					<li class="menu-list-item" ng-repeat="category in categories" ng-class="{ 'active': isCurrentCategory(category)}">
+						<a class="menu-list-link" ng-click="setCurrentCategory(category)">
 							<i class="fa fa-folder" aria-hidden="true"></i>
 							<i class="fa fa-folder-o" aria-hidden="true"></i>
 							{{category.name}}
@@ -44,13 +48,19 @@
 		<div class="column">
 			<section class="bookmarks">
 				<div class="inner-wrap">
-					<div class="bookmark-item" ng-repeat="bookmark in bookmarks">
-						<a class="bookmark-item-link" href="{{bookmark.url}}">
-							<i class="fa fa-book" aria-hidden="true"></i>
-							{{bookmark.title}}
-						</a>
+					<div class="bookmark-item"
+					     ng-repeat="bookmark in bookmarkItem = (bookmarks | filter:{category: currentCategory.name} | filter:{title: search})"
+					     context-menu="editOptions">
+							<a class="bookmark-item-link" href="{{bookmark.url}}">
+								<i class="fa fa-book" aria-hidden="true"></i>
+								{{bookmark.title}}
+							</a>
 
-						<i class="fa fa-cog" aria-hidden="true"></i>
+							<i class="fa fa-cog" aria-hidden="true" context-menu="editOptions" context-menu-on="contextmenu, click"></i>
+					</div>
+
+					<div class="bookmark-item" ng-show="!bookmarkItem.length">
+						<p>Nothing here!!!</p>
 					</div>
 				</div>
 			</section>
@@ -59,7 +69,10 @@
 </main>
 
 <!-- start:main-vendor -->
+<script src="./node_modules/lodash/lodash.min.js"></script>
 <script src="./node_modules/angular/angular.min.js"></script>
+<script src="./node_modules/ng-dialog/js/ngDialog.min.js"></script>
+<script src="./node_modules/angular-bootstrap-contextmenu/contextMenu.js"></script>
 <!-- end:main-vendor -->
 
 <!-- start:main-app -->

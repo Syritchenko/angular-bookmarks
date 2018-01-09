@@ -1,10 +1,15 @@
 {
   "main": {
     "css": [
-      "./node_modules/bulma/css/bulma.css"
+      "./node_modules/bulma/css/bulma.css",
+      "./node_modules/ng-dialog/css/ngDialog.min.css",
+      "./node_modules/ng-dialog/css/ngDialog-theme-default.min.css"
     ],
     "vendor": [
-      "./node_modules/angular/angular.min.js"
+      "./node_modules/lodash/lodash.min.js",
+      "./node_modules/angular/angular.min.js",
+      "./node_modules/ng-dialog/js/ngDialog.min.js",
+      "./node_modules/angular-bootstrap-contextmenu/contextMenu.js"
     ],
     "app": [
       "app/app.js"
