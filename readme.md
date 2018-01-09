@@ -1,0 +1,1 @@
+ln -s /home/serhii/www/angular-bookmarks/node_modules/ /home/serhii/www/angular-bookmarks/public/

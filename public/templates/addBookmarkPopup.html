@@ -1,0 +1,34 @@
+<form role="form" ng-submit="closeThisDialog(); createBookmark(newBookmark)">
+	<div class="field">
+		<label class="label" for="name-bookmark">Title Bookmark</label>
+		<div class="control">
+			<input class="input" type="text" id="name-bookmark" ng-model="newBookmark.title" placeholder="Title Bookmark" required>
+		</div>
+	</div>
+
+	<div class="field">
+		<label class="label" for="url-bookmark">Url Bookmark</label>
+		<div class="control">
+			<input class="input" type="text" id="url-bookmark" ng-model="newBookmark.url" placeholder="Url Bookmark" required>
+		</div>
+	</div>
+
+	<div class="field">
+		<label class="label" for="category">Category</label>
+		<div class="control">
+			<select class="input" type="text" id="category" placeholder="category" ng-model="newBookmark.category" required>
+				<option value="">---Please select---</option>
+				<option ng-repeat="option in categories" ng-value="option.name">{{option.name}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="field is-grouped">
+		<div class="control">
+			<button type="submit" class="button is-link">Add</button>
+		</div>
+		<div class="control">
+			<button type="button" class="button is-text" ng-click="closeThisDialog()">Cancel</button>
+		</div>
+	</div>
+</form>

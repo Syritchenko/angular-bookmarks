@@ -1,0 +1,24 @@
+<form role="form" ng-submit="updateBookmark(editedBookmark); closeThisDialog()">
+	<div class="field">
+		<label class="label" for="name-bookmark">Name Bookmark</label>
+		<div class="control">
+			<input class="input" type="text" id="name-bookmark" ng-model="editedBookmark.title" placeholder="Name Bookmark" required>
+		</div>
+	</div>
+
+	<div class="field">
+		<label class="label" for="url-bookmark">Url Bookmark</label>
+		<div class="control">
+			<input class="input" type="text" id="url-bookmark" ng-model="editedBookmark.url" placeholder="Url Bookmark" required>
+		</div>
+	</div>
+
+	<div class="field is-grouped">
+		<div class="control">
+			<button class="button is-link">Change</button>
+		</div>
+		<div class="control">
+			<button class="button is-text" ng-click="closeThisDialog()">Cancel</button>
+		</div>
+	</div>
+</form>
