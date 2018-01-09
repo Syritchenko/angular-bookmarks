@@ -47,7 +47,13 @@ angular.module('test', [
 
 		function createBookmark(bookmark) {
 			bookmark.id = $scope.bookmarks.length;
+			$scope.currentCategory.name = bookmark.category;
+			bookmark.name = bookmark.category;
+			$scope.isCurrentCategory(bookmark);
+			delete bookmark.name;
+
 			$scope.bookmarks.push(bookmark);
+
 
 			resetCreateForm();
 		}
