@@ -22,8 +22,6 @@ angular.module('test', [
 			{"id":8, "title": "Dump", "url": "http://dump.com", "category": "Humor" }
 		];
 
-		$scope.test = "Hello world!!!";
-
 		// Get current category
 		$scope.currentCategory = {};
 
@@ -47,13 +45,15 @@ angular.module('test', [
 
 		function createBookmark(bookmark) {
 			bookmark.id = $scope.bookmarks.length;
+
+			// Active category
+			$scope.currentCategory = {};
 			$scope.currentCategory.name = bookmark.category;
 			bookmark.name = bookmark.category;
 			$scope.isCurrentCategory(bookmark);
 			delete bookmark.name;
 
 			$scope.bookmarks.push(bookmark);
-
 
 			resetCreateForm();
 		}
