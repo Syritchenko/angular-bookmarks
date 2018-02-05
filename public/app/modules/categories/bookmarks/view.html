@@ -1,0 +1,20 @@
+<section class="bookmarks">
+	<div class="inner-wrap">
+		<div class="bookmark-item"
+		     ng-repeat="bookmark in $ctrl.bookmarks | filter:{category: $ctrl.currentCategory}"
+		     context-menu="editOptions">
+			<a class="bookmark-item-link" href="{{bookmark.url}}">
+				<i class="fa fa-book" aria-hidden="true"></i>
+				{{bookmark.title}}
+			</a>
+
+			<i class="fa fa-cog" aria-hidden="true" ng-click="$ctrl.editBookmark(bookmark)"></i>
+			<i class="fa fa-cog" aria-hidden="true" ng-click="$ctrl.removeBookmark(bookmark)"></i>
+			<!--<i class="fa fa-cog" aria-hidden="true" context-menu="editOptions" context-menu-on="contextmenu, click"></i>-->
+		</div>
+
+		<!--<div class="bookmark-item" ng-show="!bookmarkItem.length">
+			<p>Nothing here!!!</p>
+		</div>-->
+	</div>
+</section>

@@ -1,0 +1,15 @@
+<aside class="menu">
+	<ul class="menu-list">
+		<li ui-sref-active="active" class="menu-list-item" ng-repeat="category in $ctrl.categories">
+			<a
+				class="menu-list-link"
+				ui-sref="app.categories.bookmarks({category: category.name})"
+				ng-click="$ctrl.setCurrentCategory(category)">
+
+				<i class="fa fa-folder" aria-hidden="true"></i>
+				<i class="fa fa-folder-o" aria-hidden="true"></i>
+				{{category.name}}
+			</a>
+		</li>
+	</ul>
+</aside>
