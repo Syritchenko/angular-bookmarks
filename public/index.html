@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="test">
+<html lang="en" ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
@@ -12,10 +12,38 @@
 
 	<link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="./build/main.css">
-</head>
-<body ng-controller="someCtrl">
 
-<header class="header">
+	<!-- start:main-vendor -->
+	<script src="./node_modules/lodash/lodash.min.js"></script>
+	<script src="./node_modules/angular/angular.min.js"></script>
+	<script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="./node_modules/ng-dialog/js/ngDialog.min.js"></script>
+	<script src="./node_modules/angular-bootstrap-contextmenu/contextMenu.js"></script>
+	<!-- end:main-vendor -->
+
+	<!-- start:main-app -->
+	<script src="app/modules/app.js"></script>
+	<script src="app/modules/components/appComponents.js"></script>
+	<script src="app/modules/categories/categories.states.js"></script>
+	<script src="app/modules/categories/categories.services.js"></script>
+	<script src="app/modules/categories/categories.components.js"></script>
+	<script src="app/modules/categories/bookmarks/bookmarks.states.js"></script>
+	<script src="app/modules/categories/bookmarks/bookmarks.services.js"></script>
+	<script src="app/modules/categories/bookmarks/bookmarks.components.js"></script>
+	<!-- end:main-app -->
+</head>
+<body>
+<app-header></app-header>
+
+<main class="main-wrap">
+	<div class="columns" ng-cloak>
+		<div class="column is-one-quarter"  ui-view="categories"></div>
+
+		<div class="column" ui-view="bookmarks"></div>
+	</div>
+</main>
+
+<!--<header class="header">
 	<h1>Bookmarks</h1>
 
 	<div class="field">
@@ -24,12 +52,12 @@
 		</div>
 	</div>
 
-	<div class="dropdown" context-menu="createOptions" context-menu-on="click"> <!-- .is-active -->
+	<div class="dropdown" context-menu="createOptions" context-menu-on="click"> &lt;!&ndash; .is-active &ndash;&gt;
 		<i class="fa fa-cog" aria-hidden="true"></i>
 	</div>
-</header>
+</header>-->
 
-<main class="main-wrap" ng-init="currentCategory.name = 'Development'">
+<!--<main class="main-wrap">
 	<div class="columns">
 		<div class="column is-one-quarter">
 			<aside class="menu">
@@ -66,19 +94,7 @@
 			</section>
 		</div>
 	</div>
-</main>
+</main>-->
 
-<!-- start:main-vendor -->
-<script src="./node_modules/lodash/lodash.min.js"></script>
-<script src="./node_modules/angular/angular.min.js"></script>
-<script src="./node_modules/ng-dialog/js/ngDialog.min.js"></script>
-<script src="./node_modules/angular-bootstrap-contextmenu/contextMenu.js"></script>
-<!-- end:main-vendor -->
-
-<!-- start:main-app -->
-<script src="app/app.js"></script>
-<!-- end:main-app -->
-
-<script src="./build/main.js"></script>
 </body>
 </html>

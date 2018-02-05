@@ -8,11 +8,19 @@
     "vendor": [
       "./node_modules/lodash/lodash.min.js",
       "./node_modules/angular/angular.min.js",
+      "./node_modules/angular-ui-router/release/angular-ui-router.min.js",
       "./node_modules/ng-dialog/js/ngDialog.min.js",
       "./node_modules/angular-bootstrap-contextmenu/contextMenu.js"
     ],
     "app": [
-      "app/app.js"
+      "app/modules/app.js",
+      "app/modules/components/appComponents.js",
+      "app/modules/categories/categories.states.js",
+      "app/modules/categories/categories.services.js",
+      "app/modules/categories/categories.components.js",
+      "app/modules/categories/bookmarks/bookmarks.states.js",
+      "app/modules/categories/bookmarks/bookmarks.services.js",
+      "app/modules/categories/bookmarks/bookmarks.components.js"
     ]
   }
 }

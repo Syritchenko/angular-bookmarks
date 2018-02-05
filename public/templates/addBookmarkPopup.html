@@ -1,3 +1,4 @@
+<!--
 <form role="form" ng-submit="closeThisDialog(); createBookmark(newBookmark)">
 	<div class="field">
 		<label class="label" for="name-bookmark">Title Bookmark</label>
@@ -17,7 +18,7 @@
 		<label class="label" for="category">Category</label>
 		<div class="control">
 			<select class="input" type="text" id="category" placeholder="category" ng-model="newBookmark.category" required>
-				<option value="">---Please select---</option>
+				<option value="">-&#45;&#45;Please select-&#45;&#45;</option>
 				<option ng-repeat="option in categories" ng-value="option.name">{{option.name}}</option>
 			</select>
 		</div>
@@ -31,4 +32,4 @@
 			<button type="button" class="button is-text" ng-click="closeThisDialog()">Cancel</button>
 		</div>
 	</div>
-</form>
+</form>-->
