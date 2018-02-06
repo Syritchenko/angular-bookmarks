@@ -43,58 +43,5 @@
 	</div>
 </main>
 
-<!--<header class="header">
-	<h1>Bookmarks</h1>
-
-	<div class="field">
-		<div class="control">
-			<input class="input is-info" ng-model="search" type="text" placeholder="Info input">
-		</div>
-	</div>
-
-	<div class="dropdown" context-menu="createOptions" context-menu-on="click"> &lt;!&ndash; .is-active &ndash;&gt;
-		<i class="fa fa-cog" aria-hidden="true"></i>
-	</div>
-</header>-->
-
-<!--<main class="main-wrap">
-	<div class="columns">
-		<div class="column is-one-quarter">
-			<aside class="menu">
-				<ul class="menu-list">
-					<li class="menu-list-item" ng-repeat="category in categories" ng-class="{ 'active': isCurrentCategory(category)}">
-						<a class="menu-list-link" ng-click="setCurrentCategory(category)">
-							<i class="fa fa-folder" aria-hidden="true"></i>
-							<i class="fa fa-folder-o" aria-hidden="true"></i>
-							{{category.name}}
-						</a>
-					</li>
-				</ul>
-			</aside>
-		</div>
-
-		<div class="column">
-			<section class="bookmarks">
-				<div class="inner-wrap">
-					<div class="bookmark-item"
-					     ng-repeat="bookmark in bookmarkItem = (bookmarks | filter:{category: currentCategory.name} | filter:{title: search})"
-					     context-menu="editOptions">
-							<a class="bookmark-item-link" href="{{bookmark.url}}">
-								<i class="fa fa-book" aria-hidden="true"></i>
-								{{bookmark.title}}
-							</a>
-
-							<i class="fa fa-cog" aria-hidden="true" context-menu="editOptions" context-menu-on="contextmenu, click"></i>
-					</div>
-
-					<div class="bookmark-item" ng-show="!bookmarkItem.length">
-						<p>Nothing here!!!</p>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
-</main>-->
-
 </body>
 </html>

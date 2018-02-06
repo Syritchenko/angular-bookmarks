@@ -24,11 +24,6 @@
 					'bookmarks@': {
 						component: 'bookmarksList',
 					}
-				},
-				resolve: {
-					categories: function(CategoriesService) {
-						return CategoriesService.getAllCategories();
-					}
 				}
 			})
 		;

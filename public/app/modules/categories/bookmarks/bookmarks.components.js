@@ -2,7 +2,7 @@
 	'use strict';
 
 	var bookmarksList = {
-		templateUrl: '/app/modules/categories/bookmarks/view.html',
+		templateUrl: '/app/modules/categories/bookmarks/list.html',
 		controller: function ($state, ngDialog, BookmarksService) {
 			var vm = this;
 

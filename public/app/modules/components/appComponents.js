@@ -4,29 +4,27 @@
 
 	var appHeader = {
 		templateUrl: '/app/modules/components/header.html',
-		controller: function(BookmarksService, ngDialog) {
+		controller: function(CategoriesService, BookmarksService, ngDialog) {
 			var vm = this;
 
 			vm.openDialog = openDialog;
 
-			function createBookmark() {
-				BookmarksService.cre
-			}
-
-			function openDialog(bookmark) {
+			function openDialog() {
 				ngDialog.open({
 					template: '/app/modules/components/addBookmark.html',
 					className: 'ngdialog-theme-default',
 					controller: function () {
 						var vm = this;
 
-						vm.editedBookmark = angular.copy(bookmark);
+						CategoriesService.getCategories()
+							.then(function (categories) {
+								vm.categories = categories;
+							});
 
-						vm.updateCurrentBookmark = updateCurrentBookmark;
+						vm.createBookmark = createBookmark;
 
-						// Update current bookmark
-						function updateCurrentBookmark(item) {
-							updateBookmark(item);
+						function createBookmark() {
+							BookmarksService.createBookmark(vm.newBookmark);
 						}
 					},
 					controllerAs: '$ctrl'

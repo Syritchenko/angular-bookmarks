@@ -2,11 +2,8 @@
 	'use strict';
 
 	var categoriesList = {
-		bindings: {
-			categories: '<'
-		},
 		templateUrl: '/app/modules/categories/list.html',
-		controller: function ($state) {
+		controller: function ($state, CategoriesService) {
 			"ngInject";
 			var vm = this;
 
@@ -14,16 +11,19 @@
 				$state.go('app.categories.bookmarks', {category: 'Development'});
 			}
 
-			vm.$onInit = function() {
-				vm.currentCategory = {};
+			CategoriesService.getCategories()
+				.then(function (categories) {
+					vm.categories = categories;
+				});
 
-				vm.setCurrentCategory = setCurrentCategory;
+			vm.currentCategory = {};
 
-				// Set current category
-				function setCurrentCategory(category) {
-					vm.currentCategory = category;
-				}
-			};
+			vm.setCurrentCategory = setCurrentCategory;
+
+			// Set current category
+			function setCurrentCategory(category) {
+				vm.currentCategory = category;
+			}
 		}
 	};
 

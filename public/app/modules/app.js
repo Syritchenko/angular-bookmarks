@@ -15,10 +15,6 @@
 	])
 		.config(configure)
 
-		/*.component('app', {
-			templateUrl: '/app/modules/main.html'
-		})*/;
-
 	function configure($stateProvider, $urlRouterProvider) {
 		$stateProvider
 			.state('app', {

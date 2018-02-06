@@ -10,4 +10,13 @@
     .fa {
         font-size: 22px;
     }
+
+    &-add {
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+    }
 }

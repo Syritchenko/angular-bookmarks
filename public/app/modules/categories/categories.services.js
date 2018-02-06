@@ -6,15 +6,21 @@
 		.service('CategoriesService', CategoriesService)
 	;
 
-	function CategoriesService ($http) {
-		var service = {
-			getAllCategories: function () {
-				return $http.get('data/categories.json', { cache: true }).then(function(response) {
-					return response.data;
-				})
-			}
-		};
+	function CategoriesService ($http, $q) {
+		var vm = this,
+			categories;
 
-		return service;
+		function extract(result) {
+			return result.data;
+		}
+
+		function cacheCategories(result) {
+			categories = extract(result);
+			return categories;
+		}
+
+		vm.getCategories = function () {
+			return (categories) ? $q.when(categories) : $http.get('data/categories.json').then(cacheCategories);
+		};
 	}
 })();
