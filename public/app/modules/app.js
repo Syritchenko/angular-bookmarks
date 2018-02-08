@@ -7,6 +7,9 @@
 		'ngDialog',
 		'ui-notification',
 
+		// Filters
+		'app.filterBookmarks',
+
 		// States
 		'app.categories.states',
 		'app.bookmarks.states',
@@ -26,7 +29,6 @@
 				positionY: 'top'
 			});
 		})
-		.filter('bookmarkFilter', showBookmark)
 	;
 
 	function configure($stateProvider, $urlRouterProvider) {
@@ -39,18 +41,5 @@
 
 		// Otherwise redirect
 		$urlRouterProvider.otherwise('/');
-	}
-
-	function showBookmark(CategoriesService) {
-		return function(items) {
-			var filtered = [];
-			angular.forEach(items, item => {
-				if(item.category === CategoriesService.currentCategory.name) {
-					filtered.push(item);
-				}
-			});
-
-			return filtered;
-		}
 	}
 })();

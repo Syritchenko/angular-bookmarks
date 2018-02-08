@@ -19,6 +19,8 @@
 			return bookmarks;
 		}
 
+		vm.newValBoomark = '';
+
 		vm.getBookmarks = getBookmarks;
 		vm.createBookmark = createBookmark;
 

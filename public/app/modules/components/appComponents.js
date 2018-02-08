@@ -8,6 +8,15 @@
 			var vm = this;
 
 			vm.openDialog = openDialog;
+			vm.searchBookmark = '';
+
+			console.log();
+			vm.searchChange = function(value) {
+				BookmarksService.newValBoomark = value;
+			};
+
+			/*$rootScope.someValue = vm.searchChange();
+			console.log($rootScope.someValue);*/
 
 			/**
 			 * Open dialog for add bookmark

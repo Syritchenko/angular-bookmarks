@@ -16,6 +16,7 @@
     ],
     "app": [
       "app/modules/app.js",
+      "app/modules/filters/filterBookmarks.js",
       "app/modules/components/appComponents.js",
       "app/modules/categories/categories.states.js",
       "app/modules/categories/categories.services.js",
