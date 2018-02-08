@@ -3,15 +3,16 @@
 
 	var bookmarksList = {
 		templateUrl: '/app/modules/categories/bookmarks/list.html',
-		controller: function ($state, ngDialog, BookmarksService) {
+		controller: function ($state, ngDialog, Notification, BookmarksService, CategoriesService) {
 			var vm = this;
 
+			/**
+			 * Get bookmark from service
+			 */
 			BookmarksService.getBookmarks()
 				.then(function(bookmarks) {
 					vm.bookmarks = bookmarks;
 				});
-
-			vm.currentCategory = $state.params.category;
 
 			vm.editBookmark = editBookmark;
 			vm.removeBookmark = removeBookmark;
@@ -22,9 +23,13 @@
 				});
 
 				vm.bookmarks[index] = bookmark;
+				Notification.success('You success have updated bookmark!');
 			}
 
-			// Edit bookmark
+			/**
+			 * Edit bookmark
+			 * @param bookmark
+			 */
 			function editBookmark(bookmark) {
 				ngDialog.open({
 					template: '/app/modules/categories/bookmarks/edit.html',
@@ -45,9 +50,13 @@
 				});
 			}
 
-			// Remove bookmark
+			/**
+			 * Remove bookmark
+			 * @param bookmark
+			 */
 			function removeBookmark(bookmark) {
 				_.remove(vm.bookmarks, item => item.id == bookmark.id);
+				Notification.success('You success have deleted bookmark!');
 			}
 		}
 	};

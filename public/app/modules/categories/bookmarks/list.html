@@ -1,7 +1,7 @@
 <section class="bookmarks">
 	<div class="inner-wrap">
 		<div class="bookmark-item"
-		     ng-repeat="bookmark in $ctrl.bookmarks | filter:{category: $ctrl.currentCategory}"
+		     ng-repeat="bookmark in $ctrl.bookmarks | bookmarkFilter"
 		     context-menu="editOptions">
 			<a class="bookmark-item-link" href="{{bookmark.url}}">
 				<i class="fa fa-book" aria-hidden="true"></i>

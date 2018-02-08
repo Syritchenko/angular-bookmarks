@@ -4,11 +4,14 @@
 
 	var appHeader = {
 		templateUrl: '/app/modules/components/header.html',
-		controller: function(CategoriesService, BookmarksService, ngDialog) {
+		controller: function(CategoriesService, BookmarksService, ngDialog, Notification) {
 			var vm = this;
 
 			vm.openDialog = openDialog;
 
+			/**
+			 * Open dialog for add bookmark
+			 */
 			function openDialog() {
 				ngDialog.open({
 					template: '/app/modules/components/addBookmark.html',
@@ -25,6 +28,7 @@
 
 						function createBookmark() {
 							BookmarksService.createBookmark(vm.newBookmark);
+							Notification.success('You success have added new bookmark!');
 						}
 					},
 					controllerAs: '$ctrl'

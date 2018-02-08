@@ -16,13 +16,16 @@
 					vm.categories = categories;
 				});
 
-			vm.currentCategory = {};
-
-			vm.setCurrentCategory = setCurrentCategory;
+			vm.getCurrentCategory = getCurrentCategory;
+			vm.checkCurrentCategory = checkCurrentCategory;
 
 			// Set current category
-			function setCurrentCategory(category) {
-				vm.currentCategory = category;
+			function getCurrentCategory(category) {
+				CategoriesService.setCurrentCategory(category);
+			}
+
+			function checkCurrentCategory(category) {
+				return CategoriesService.isCurrentCategory(category);
 			}
 		}
 	};

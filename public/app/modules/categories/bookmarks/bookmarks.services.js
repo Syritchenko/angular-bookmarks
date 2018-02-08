@@ -19,11 +19,22 @@
 			return bookmarks;
 		}
 
-		vm.getBookmarks = function () {
-			return (bookmarks) ? $q.when(bookmarks) : $http.get('data/bookmarks.json').then(cacheBookmarks);
-		};
+		vm.getBookmarks = getBookmarks;
+		vm.createBookmark = createBookmark;
 
-		vm.createBookmark = function(bookmark) {
+		/**
+		 * Get all bookmarks
+		 * @returns {*}
+		 */
+		function getBookmarks () {
+			return (bookmarks) ? $q.when(bookmarks) : $http.get('data/bookmarks.json').then(cacheBookmarks);
+		}
+
+		/**
+		 * Create new bookmark
+		 * @param bookmark
+		 */
+		function createBookmark(bookmark) {
 			bookmark.id = bookmarks.length;
 			bookmarks.push(bookmark);
 		}
