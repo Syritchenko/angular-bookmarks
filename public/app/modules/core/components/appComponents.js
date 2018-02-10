@@ -2,36 +2,32 @@
 
 	'use strict';
 
-	var appHeader = {
-		templateUrl: '/app/modules/components/header.html',
+	const appHeader = {
+		templateUrl: '/app/modules/core/components/header.html',
 		controller: function(CategoriesService, BookmarksService, ngDialog, Notification) {
-			var vm = this;
+			let vm = this;
 
 			vm.openDialog = openDialog;
 			vm.searchBookmark = '';
 
-			console.log();
-			vm.searchChange = function(value) {
-				BookmarksService.newValBoomark = value;
-			};
+			vm.searchChange = searchChange;
 
-			/*$rootScope.someValue = vm.searchChange();
-			console.log($rootScope.someValue);*/
+			function searchChange(value) {
+				BookmarksService.newValBoomark = value;
+			}
 
 			/**
 			 * Open dialog for add bookmark
 			 */
 			function openDialog() {
 				ngDialog.open({
-					template: '/app/modules/components/addBookmark.html',
+					template: '/app/modules/core/components/addBookmark.html',
 					className: 'ngdialog-theme-default',
 					controller: function () {
-						var vm = this;
+						let vm = this;
 
 						CategoriesService.getCategories()
-							.then(function (categories) {
-								vm.categories = categories;
-							});
+							.then(categories => vm.categories = categories);
 
 						vm.createBookmark = createBookmark;
 

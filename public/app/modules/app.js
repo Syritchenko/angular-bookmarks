@@ -10,6 +10,9 @@
 		// Filters
 		'app.filterBookmarks',
 
+		// Directives
+		'app.validation',
+
 		// States
 		'app.categories.states',
 		'app.bookmarks.states',

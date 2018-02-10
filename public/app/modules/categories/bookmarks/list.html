@@ -5,7 +5,7 @@
 		     context-menu="editOptions" ng-cloak>
 			<a class="bookmark-item-link" href="{{bookmark.url}}">
 				<i class="fa fa-book" aria-hidden="true"></i>
-				{{bookmark.title}}
+				{{bookmark.title | sliceLongData: 10 | toLowerCase }}
 			</a>
 
 			<i class="fa fa-cog" aria-hidden="true" ng-click="$ctrl.editBookmark(bookmark)"></i>

@@ -7,7 +7,7 @@
 	;
 
 	function BookmarksService ($http, $q) {
-		var vm = this,
+		let vm = this,
 			bookmarks;
 
 		function extract(result) {

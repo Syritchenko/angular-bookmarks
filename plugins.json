@@ -16,8 +16,9 @@
     ],
     "app": [
       "app/modules/app.js",
-      "app/modules/filters/filterBookmarks.js",
-      "app/modules/components/appComponents.js",
+      "app/modules/core/filters/filterBookmarks.js",
+      "app/modules/core/directives/validation.js",
+      "app/modules/core/components/appComponents.js",
       "app/modules/categories/categories.states.js",
       "app/modules/categories/categories.services.js",
       "app/modules/categories/categories.components.js",

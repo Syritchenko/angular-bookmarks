@@ -1,32 +1,30 @@
 (function () {
 	'use strict';
 
-	var bookmarksList = {
+	const bookmarksList = {
 		templateUrl: '/app/modules/categories/bookmarks/list.html',
-		controller: function ($state, ngDialog, Notification, BookmarksService, CategoriesService) {
-			var vm = this;
+		controller: function ($state, ngDialog, Notification, BookmarksService) {
+			"ngInject";
+
+			let vm = this;
 
 			/**
 			 * Get bookmark from service
 			 */
 			BookmarksService.getBookmarks()
-				.then(function(bookmarks) {
-					vm.bookmarks = bookmarks;
-				});
+				.then(bookmarks => vm.bookmarks = bookmarks);
 
 			vm.editBookmark = editBookmark;
 			vm.removeBookmark = removeBookmark;
 
 			function updateBookmark(bookmark) {
-				let index = _.findIndex(vm.bookmarks, function(b) {
-					return b.id == bookmark.id;
-				});
+				let index = _.findIndex(vm.bookmarks, item => item.id == bookmark.id);
 
 				vm.bookmarks[index] = bookmark;
 				Notification.success('You success have updated bookmark!');
 			}
 
-			/**
+			/**d
 			 * Edit bookmark
 			 * @param bookmark
 			 */
@@ -35,7 +33,7 @@
 					template: '/app/modules/categories/bookmarks/edit.html',
 					className: 'ngdialog-theme-default',
 					controller: function () {
-						var vm = this;
+						let vm = this;
 
 						vm.editedBookmark = angular.copy(bookmark);
 

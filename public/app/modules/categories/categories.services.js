@@ -7,7 +7,7 @@
 	;
 
 	function CategoriesService ($http, $q) {
-		var vm = this,
+		let vm = this,
 			categories;
 
 		vm.currentCategory = { name: 'Development'};
