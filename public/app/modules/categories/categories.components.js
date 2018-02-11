@@ -8,21 +8,25 @@
 
 			let vm = this;
 
-			if(!$state.params.category) {
-				$state.go('app.categories.bookmarks', {category: 'Development'});
-			}
-
 			CategoriesService.getCategories()
 				.then(categories => vm.categories = categories);
 
 			vm.getCurrentCategory = getCurrentCategory;
 			vm.checkCurrentCategory = checkCurrentCategory;
 
-			// Set current category
+			/**
+			 * Get current category
+			 * @param category
+			 */
 			function getCurrentCategory(category) {
 				CategoriesService.setCurrentCategory(category);
 			}
 
+			/**
+			 * Check current category
+			 * @param category
+			 * @returns {*}
+			 */
 			function checkCurrentCategory(category) {
 				return CategoriesService.isCurrentCategory(category);
 			}

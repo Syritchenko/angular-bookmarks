@@ -10,16 +10,22 @@
 		let vm = this,
 			bookmarks;
 
+		/**
+		 * Extract our data before transfer to component
+		 */
 		function extract(result) {
 			return result.data;
 		}
 
+		/**
+		 * Get cache for bookmarks for repeatedly using
+		 * @param result
+		 * @returns {*}
+		 */
 		function cacheBookmarks(result) {
 			bookmarks = extract(result);
 			return bookmarks;
 		}
-
-		vm.newValBoomark = '';
 
 		vm.getBookmarks = getBookmarks;
 		vm.createBookmark = createBookmark;

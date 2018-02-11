@@ -13,11 +13,11 @@
 	 * @returns {Function}
 	 */
 	function bookmarkFilter(CategoriesService, BookmarksService) {
-		return function(items) {
+		return items => {
 			let filtered = [];
 
 			if(!BookmarksService.newValBoomark) {
-				angular.forEach(items, item => {
+				_.forEach(items, item => {
 					if(item.category === CategoriesService.currentCategory.name) {
 						filtered.push(item);
 					}
@@ -26,7 +26,7 @@
 				let value = BookmarksService.newValBoomark;
 				let regexp = new RegExp(value, 'gi');
 
-				angular.forEach(items, item => {
+				_.forEach(items, item => {
 					if(item.title.match(regexp)) {
 						filtered.push(item);
 					}
@@ -51,6 +51,10 @@
 		}
 	}
 
+	/**
+	 * To lower case
+	 * @returns {function(*): (*|string)}
+	 */
 	function toLowerCase() {
 		return item => item.toLowerCase();
 	}

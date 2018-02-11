@@ -8,10 +8,12 @@
 			let vm = this;
 
 			vm.openDialog = openDialog;
-			vm.searchBookmark = '';
-
 			vm.searchChange = searchChange;
 
+			/**
+			 * Search bookmark
+			 * @param value
+			 */
 			function searchChange(value) {
 				BookmarksService.newValBoomark = value;
 			}

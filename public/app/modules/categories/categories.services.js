@@ -10,12 +10,21 @@
 		let vm = this,
 			categories;
 
+		// Default current category
 		vm.currentCategory = { name: 'Development'};
 
+		/**
+		 * Extract our data before transfer to component
+ 		 */
 		function extract(result) {
 			return result.data;
 		}
 
+		/**
+		 * Get cache for categories for repeatedly using
+		 * @param result
+		 * @returns {*}
+		 */
 		function cacheCategories(result) {
 			categories = extract(result);
 			return categories;

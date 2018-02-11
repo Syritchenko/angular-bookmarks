@@ -17,6 +17,10 @@
 			vm.editBookmark = editBookmark;
 			vm.removeBookmark = removeBookmark;
 
+			/**
+			 * Update bookmark
+			 * @param bookmark
+			 */
 			function updateBookmark(bookmark) {
 				let index = _.findIndex(vm.bookmarks, item => item.id == bookmark.id);
 
