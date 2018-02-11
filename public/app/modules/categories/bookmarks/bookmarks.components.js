@@ -3,7 +3,7 @@
 
 	const bookmarksList = {
 		templateUrl: '/app/modules/categories/bookmarks/list.html',
-		controller: function ($state, ngDialog, Notification, BookmarksService) {
+		controller: function ($rootScope, $state, ngDialog, Notification, BookmarksService) {
 			"ngInject";
 
 			let vm = this;
@@ -12,7 +12,10 @@
 			 * Get bookmark from service
 			 */
 			BookmarksService.getBookmarks()
-				.then(bookmarks => vm.bookmarks = bookmarks);
+				.then(bookmarks => {
+					vm.bookmarks = bookmarks;
+					$rootScope.$emit('countBookmarks', vm.bookmarks.length);
+				});
 
 			vm.editBookmark = editBookmark;
 			vm.removeBookmark = removeBookmark;
@@ -59,6 +62,7 @@
 			function removeBookmark(bookmark) {
 				_.remove(vm.bookmarks, item => item.id == bookmark.id);
 				Notification.success('You success have deleted bookmark!');
+				$rootScope.$emit('countBookmarks', vm.bookmarks.length);
 			}
 		}
 	};

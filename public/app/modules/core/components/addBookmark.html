@@ -9,7 +9,17 @@
 	<div class="field">
 		<label class="label" for="url-bookmark">Url Bookmark</label>
 		<div class="control">
-			<input class="input" name="url" type="text" id="url-bookmark" autocomplete="off" validation-url ng-model="$ctrl.newBookmark.url" placeholder="Url Bookmark" required>
+			<input
+				class="input"
+				name="url"
+				type="text"
+				id="url-bookmark"
+				autocomplete="off"
+				validation-url
+				ng-model="$ctrl.newBookmark.url"
+				ng-model-options="{ updateOn: 'blur' }"
+				placeholder="Url Bookmark"
+				required>
 			<span class="error" ng-show="addBookmark.url.$error.url">Your url must start from 'http://' or 'https://'</span>
 		</div>
 	</div>

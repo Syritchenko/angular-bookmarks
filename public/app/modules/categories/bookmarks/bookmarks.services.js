@@ -6,7 +6,7 @@
 		.service('BookmarksService', BookmarksService)
 	;
 
-	function BookmarksService ($http, $q) {
+	function BookmarksService ($rootScope, $http, $q) {
 		let vm = this,
 			bookmarks;
 
@@ -45,6 +45,7 @@
 		function createBookmark(bookmark) {
 			bookmark.id = bookmarks.length;
 			bookmarks.push(bookmark);
+			$rootScope.$emit('countBookmarks', bookmarks.length);
 		}
 	}
 })();
