@@ -29,6 +29,7 @@
 
 		vm.getBookmarks = getBookmarks;
 		vm.createBookmark = createBookmark;
+		vm.removeBookmark = removeBookmark;
 
 		/**
 		 * Get all bookmarks
@@ -45,6 +46,11 @@
 		function createBookmark(bookmark) {
 			bookmark.id = bookmarks.length;
 			bookmarks.push(bookmark);
+			$rootScope.$emit('countBookmarks', bookmarks.length);
+		}
+
+		function removeBookmark(bookmark) {
+			_.remove(bookmarks, item => item.id == bookmark.id);
 			$rootScope.$emit('countBookmarks', bookmarks.length);
 		}
 	}

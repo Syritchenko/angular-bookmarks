@@ -29,6 +29,7 @@
 
 				vm.bookmarks[index] = bookmark;
 				Notification.success('You success have updated bookmark!');
+				$rootScope.$emit('updateBookmarks', bookmark);
 			}
 
 			/**d
@@ -60,9 +61,23 @@
 			 * @param bookmark
 			 */
 			function removeBookmark(bookmark) {
-				_.remove(vm.bookmarks, item => item.id == bookmark.id);
-				Notification.success('You success have deleted bookmark!');
-				$rootScope.$emit('countBookmarks', vm.bookmarks.length);
+				var currentBookmark = bookmark;
+				ngDialog.open({
+					template: '/app/modules/categories/bookmarks/dialog/confirmation.html',
+					className: 'ngdialog-theme-default',
+					controller: function () {
+						let vm = this;
+
+						vm.confirm = confirm;
+
+						function confirm() {
+							BookmarksService.removeBookmark(currentBookmark);
+							Notification.success('You success have deleted bookmark!');
+							$rootScope.$emit('removeBookmarks', currentBookmark);
+						}
+					},
+					controllerAs: '$ctrl'
+				});
 			}
 		}
 	};

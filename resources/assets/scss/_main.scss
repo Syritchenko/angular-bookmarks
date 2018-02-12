@@ -11,3 +11,67 @@
 .error {
     color: #ff5d5f;
 }
+
+.delete-popup {
+    h2 {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    .popup-btn {
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            color: #fff;
+            width: 50%;
+            padding: 10px 20px;
+            text-align: center;
+            text-transform: uppercase;
+
+            &:first-child {
+                background-color: #b3b5b9;
+            }
+
+            &:last-child {
+                background-color: #40c958;
+            }
+        }
+    }
+}
+
+.activity {
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #888;
+}
+
+.activity-list {
+    margin: 0;
+    padding: 0 0 0 15px;
+
+    .list-item {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #aaa;
+
+        &:last-child {
+            border-bottom: none;
+        }
+        
+        .removed {
+            color: #c4606e;
+        }
+        
+        .updated {
+            color: #d1ad27;
+        }
+        
+        .added {
+            color: #4eb155;
+        }
+    }
+}

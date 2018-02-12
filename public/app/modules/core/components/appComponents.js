@@ -4,7 +4,7 @@
 
 	const appHeader = {
 		templateUrl: '/app/modules/core/components/header.html',
-		controller: function(CategoriesService, BookmarksService, ngDialog, Notification) {
+		controller: function($rootScope, CategoriesService, BookmarksService, ngDialog, Notification) {
 			let vm = this;
 
 			vm.openDialog = openDialog;
@@ -28,6 +28,13 @@
 					controller: function () {
 						let vm = this;
 
+						vm.newBookmark = {};
+						vm.currentCategory = CategoriesService.currentCategory.name;
+
+						if(vm.currentCategory) {
+							vm.newBookmark.category = CategoriesService.currentCategory.name;
+						}
+
 						CategoriesService.getCategories()
 							.then(categories => vm.categories = categories);
 
@@ -36,6 +43,7 @@
 						function createBookmark() {
 							BookmarksService.createBookmark(vm.newBookmark);
 							Notification.success('You success have added new bookmark!');
+							$rootScope.$emit('addBookmarks', vm.newBookmark);
 						}
 					},
 					controllerAs: '$ctrl'

@@ -17,14 +17,13 @@
 				autocomplete="off"
 				validation-url
 				ng-model="$ctrl.newBookmark.url"
-				ng-model-options="{ updateOn: 'blur' }"
 				placeholder="Url Bookmark"
 				required>
 			<span class="error" ng-show="addBookmark.url.$error.url">Your url must start from 'http://' or 'https://'</span>
 		</div>
 	</div>
 
-	<div class="field">
+	<div class="field" ng-if="!$ctrl.currentCategory">
 		<label class="label" for="category">Category</label>
 		<div class="control">
 			<select class="input" type="text" id="category" placeholder="category" ng-model="$ctrl.newBookmark.category" required>

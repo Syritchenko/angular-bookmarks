@@ -16,7 +16,11 @@
 		return items => {
 			let filtered = [];
 
-			if(!BookmarksService.newValBoomark) {
+			if(!CategoriesService.currentCategory.name) {
+				_.forEach(items, item => {
+					filtered.push(item);
+				});
+			} else if(!BookmarksService.newValBoomark && CategoriesService.currentCategory.name) {
 				_.forEach(items, item => {
 					if(item.category === CategoriesService.currentCategory.name) {
 						filtered.push(item);
