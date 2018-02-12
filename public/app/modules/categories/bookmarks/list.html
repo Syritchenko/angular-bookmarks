@@ -1,19 +1,19 @@
 <section class="bookmarks">
 	<div class="inner-wrap">
 		<div class="bookmark-item"
-		     ng-repeat="bookmark in $ctrl.bookmarks | filter:{category: $ctrl.currentCategory}"
-		     context-menu="editOptions">
+		     ng-repeat="bookmark in $ctrl.bookmarks | bookmarkFilter"
+		     context-menu="editOptions" ng-cloak>
 			<a class="bookmark-item-link" href="{{bookmark.url}}">
 				<i class="fa fa-book" aria-hidden="true"></i>
-				{{bookmark.title}}
+				{{bookmark.title | sliceLongData: 10 | toLowerCase }}
 			</a>
 
 			<i class="fa fa-cog" aria-hidden="true" ng-click="$ctrl.editBookmark(bookmark)"></i>
 			<i class="fa fa-trash" aria-hidden="true" ng-click="$ctrl.removeBookmark(bookmark)"></i>
 		</div>
 
-		<!--<div class="bookmark-item" ng-show="!bookmarkItem.length">
+		<div class="bookmark-item" ng-if="($ctrl.bookmarks | bookmarkFilter).length == 0">
 			<p>Nothing here!!!</p>
-		</div>-->
+		</div>
 	</div>
 </section>

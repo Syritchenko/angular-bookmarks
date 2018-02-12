@@ -1,28 +1,34 @@
 (function () {
 	'use strict';
 
-	var categoriesList = {
+	const categoriesList = {
 		templateUrl: '/app/modules/categories/list.html',
 		controller: function ($state, CategoriesService) {
 			"ngInject";
-			var vm = this;
 
-			if(!$state.params.category) {
-				$state.go('app.categories.bookmarks', {category: 'Development'});
-			}
+			let vm = this;
 
 			CategoriesService.getCategories()
-				.then(function (categories) {
-					vm.categories = categories;
-				});
+				.then(categories => vm.categories = categories);
 
-			vm.currentCategory = {};
+			vm.getCurrentCategory = getCurrentCategory;
+			vm.checkCurrentCategory = checkCurrentCategory;
 
-			vm.setCurrentCategory = setCurrentCategory;
+			/**
+			 * Get current category
+			 * @param category
+			 */
+			function getCurrentCategory(category) {
+				CategoriesService.setCurrentCategory(category);
+			}
 
-			// Set current category
-			function setCurrentCategory(category) {
-				vm.currentCategory = category;
+			/**
+			 * Check current category
+			 * @param category
+			 * @returns {*}
+			 */
+			function checkCurrentCategory(category) {
+				return CategoriesService.isCurrentCategory(category);
 			}
 		}
 	};

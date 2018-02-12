@@ -1,4 +1,4 @@
-<form role="form" ng-submit="$ctrl.updateCurrentBookmark($ctrl.editedBookmark); closeThisDialog()">
+<form role="form" name="editBookmark" ng-submit="$ctrl.updateCurrentBookmark($ctrl.editedBookmark); closeThisDialog()">
 	<div class="field">
 		<label class="label" for="name-bookmark">Name Bookmark</label>
 		<div class="control">
@@ -9,7 +9,8 @@
 	<div class="field">
 		<label class="label" for="url-bookmark">Url Bookmark</label>
 		<div class="control">
-			<input class="input" type="text" id="url-bookmark" ng-model="$ctrl.editedBookmark.url" placeholder="Url Bookmark" required>
+			<input class="input" name="url" type="text" id="url-bookmark" validation-url ng-model="$ctrl.editedBookmark.url" placeholder="Url Bookmark" required>
+			<span class="error" ng-show="editBookmark.url.$error.url">Your url must start from 'http://' or 'https://'</span>
 		</div>
 	</div>
 

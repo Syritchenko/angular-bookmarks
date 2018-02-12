@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<main class="main-wrap">
+	<div class="columns" ng-cloak>
+		<div class="column is-one-quarter"  ui-view="categories"></div>
+
+		<div class="column" ui-view="bookmarks"></div>
+	</div>
+
+	<div>
+		<h3>Number of bookmarks: <b>{{ $ctrl.countCategories}}</b></h3>
+	</div>
+</main>
