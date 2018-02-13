@@ -1,56 +1,21 @@
 (function () {
 	'use strict';
 
-	const app = {
-		templateUrl: '/app/modules/main.html',
-		controller: function ($rootScope) {
-			let vm = this;
-
-			vm.activities = [];
-
-			vm.countCategories = 0;
-
-			$rootScope.$on('countBookmarks', (event, data) => {
-				vm.countCategories = data;
-			});
-
-			$rootScope.$on('removeBookmarks', (event, data) => {
-				let bookmark = data;
-				bookmark.type = 3;
-				bookmark.desc = 'you removed bookmark';
-				bookmark.date = new Date();
-				vm.activities.push(bookmark);
-			});
-
-			$rootScope.$on('addBookmarks', (event, data) => {
-				let bookmark = data;
-				bookmark.type = 1;
-				bookmark.desc = 'you added bookmark';
-				bookmark.date = new Date();
-				vm.activities.push(bookmark);
-			});
-
-			$rootScope.$on('updateBookmarks', (event, data) => {
-				let bookmark = data;
-				bookmark.type = 2;
-				bookmark.desc = 'update added bookmark';
-				bookmark.date = new Date();
-				vm.activities.push(bookmark);
-			});
-		}
-	};
-
 	angular.module('app', [
 		// Vendors
 		'ui.router',
 		'ngDialog',
 		'ui-notification',
+		'multipleSelect',
 
 		// Filters
 		'app.filterBookmarks',
 
 		// Directives
 		'app.validation',
+
+		// Services
+		'app.activity.services',
 
 		// States
 		'app.categories.states',
@@ -71,7 +36,6 @@
 				positionY: 'top'
 			});
 		})
-		.component('app', app)
 	;
 
 	function configure($stateProvider, $urlRouterProvider) {

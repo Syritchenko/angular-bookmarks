@@ -75,3 +75,13 @@
         }
     }
 }
+
+.form-item-container .list-inline li span.remove {
+    display: inline-block;
+    padding-left: 2px;
+    font: normal normal normal 18px/1 FontAwesome;
+
+    &:before {
+        content: '\f00d';
+    }
+}

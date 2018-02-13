@@ -17,6 +17,7 @@
 				autocomplete="off"
 				validation-url
 				ng-model="$ctrl.newBookmark.url"
+				ng-model-options="{ updateOn: 'blur' }"
 				placeholder="Url Bookmark"
 				required>
 			<span class="error" ng-show="addBookmark.url.$error.url">Your url must start from 'http://' or 'https://'</span>
@@ -24,18 +25,18 @@
 	</div>
 
 	<div class="field" ng-if="!$ctrl.currentCategory">
-		<label class="label" for="category">Category</label>
-		<div class="control">
-			<select class="input" type="text" id="category" placeholder="category" ng-model="$ctrl.newBookmark.category" required>
-				<option value="">-&#45;&#45;Please select-&#45;&#45;</option>
-				<option ng-repeat="option in $ctrl.categories" ng-value="option.name">{{option.name}}</option>
-			</select>
-		</div>
+		<label class="label" >Category</label>
+		<multiple-autocomplete
+			ng-model="$ctrl.selectedList"
+			after-select-item="$ctrl.afterSelectItem"
+			suggestions-arr="$ctrl.categoriesList"
+			required="true">
+		</multiple-autocomplete>
 	</div>
 
 	<div class="field is-grouped">
 		<div class="control">
-			<button type="submit" class="button is-link">Add</button>
+			<button type="submit" class="button is-link" ng-disabled="addBookmark.$invalid">Add</button>
 		</div>
 		<div class="control">
 			<button type="button" class="button is-text" ng-click="closeThisDialog()">Cancel</button>
