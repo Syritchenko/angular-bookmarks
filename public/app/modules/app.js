@@ -1,27 +1,21 @@
 (function () {
 	'use strict';
 
-	const app = {
-		templateUrl: '/app/modules/main.html',
-		controller: function ($rootScope) {
-			let vm = this;
-
-			vm.countCategories = 0;
-			$rootScope.$on('countBookmarks', (event, data) => vm.countCategories = data);
-		}
-	};
-
 	angular.module('app', [
 		// Vendors
 		'ui.router',
 		'ngDialog',
 		'ui-notification',
+		'multipleSelect',
 
 		// Filters
 		'app.filterBookmarks',
 
 		// Directives
 		'app.validation',
+
+		// Services
+		'app.activity.services',
 
 		// States
 		'app.categories.states',
@@ -42,7 +36,6 @@
 				positionY: 'top'
 			});
 		})
-		.component('app', app)
 	;
 
 	function configure($stateProvider, $urlRouterProvider) {

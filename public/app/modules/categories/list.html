@@ -1,6 +1,17 @@
 <aside class="menu">
 	<ul class="menu-list">
-		<li class="menu-list-item" ng-repeat="category in $ctrl.categories" ng-class="{ 'active': $ctrl.checkCurrentCategory(category) }">
+		<li class="menu-list-item" ng-class=" {active: $ctrl.checkCurrentCategory({name: ''})} ">
+			<a
+				class="menu-list-link"
+				ui-sref="app.categories.bookmarks({category: 'All'})"
+				ng-click="$ctrl.getCurrentCategory({name: ''})">
+
+				<i class="fa fa-folder" aria-hidden="true"></i>
+				<i class="fa fa-folder-o" aria-hidden="true"></i>
+				All bookmarks
+			</a>
+		</li>
+		<li class="menu-list-item" style="padding-left: 10px" ng-repeat="category in $ctrl.categories" ng-class="{ 'active': $ctrl.checkCurrentCategory(category) }">
 			<a
 				class="menu-list-link"
 				ui-sref="app.categories.bookmarks({category: category.name})"

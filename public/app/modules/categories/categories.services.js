@@ -11,7 +11,7 @@
 			categories;
 
 		// Default current category
-		vm.currentCategory = { name: 'Development'};
+		vm.currentCategory = {name: ''};
 
 		/**
 		 * Extract our data before transfer to component

@@ -1,0 +1,12 @@
+<div class="activity">
+	<ul class="activity-list" ng-if="$ctrl.activities.length">
+		<li class="list-item" ng-repeat="activity in $ctrl.activities">
+			<time> {{ activity.date | date:'MM/dd/yyyy HH:mm:ss ' }} </time>
+			<div ng-class="{'removed': activity.type == 3, 'added': activity.type == 1, 'updated': activity.type == 2}"> &ensp; {{ activity.desc }} &thinsp; - &nbsp;</div>
+			<h2><b>{{ activity.title}}</b></h2>
+			<div> / category {{ activity.category }}</div>
+		</li>
+	</ul>
+
+	<h2 ng-if="!$ctrl.activities.length">You didn't do any activity yet!</h2>
+</div>

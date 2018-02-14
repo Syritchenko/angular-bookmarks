@@ -1,10 +1,12 @@
 {
   "main": {
     "css": [
+      "./node_modules/bootstrap/dist/css/bootstrap.min.css",
       "./node_modules/bulma/css/bulma.css",
       "./node_modules/ng-dialog/css/ngDialog.min.css",
       "./node_modules/ng-dialog/css/ngDialog-theme-default.min.css",
-      "./node_modules/angular-ui-notification/dist/angular-ui-notification.min.css"
+      "./node_modules/angular-ui-notification/dist/angular-ui-notification.min.css",
+      "./node_modules/angular-multiple-select/build/multiple-select.css"
     ],
     "vendor": [
       "./node_modules/lodash/lodash.min.js",
@@ -12,12 +14,14 @@
       "./node_modules/angular-ui-router/release/angular-ui-router.min.js",
       "./node_modules/ng-dialog/js/ngDialog.min.js",
       "./node_modules/angular-bootstrap-contextmenu/contextMenu.js",
-      "./node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"
+      "./node_modules/angular-ui-notification/dist/angular-ui-notification.min.js",
+      "./node_modules/angular-multiple-select/build/multiple-select.js"
     ],
     "app": [
       "app/modules/app.js",
       "app/modules/core/filters/filterBookmarks.js",
       "app/modules/core/directives/validation.js",
+      "app/modules/core/services/activity.services.js",
       "app/modules/core/components/appComponents.js",
       "app/modules/categories/categories.states.js",
       "app/modules/categories/categories.services.js",

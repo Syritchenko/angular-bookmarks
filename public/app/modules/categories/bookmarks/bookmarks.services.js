@@ -6,7 +6,7 @@
 		.service('BookmarksService', BookmarksService)
 	;
 
-	function BookmarksService ($rootScope, $http, $q) {
+	function BookmarksService ($rootScope, ActivityServices, $http, $q) {
 		let vm = this,
 			bookmarks;
 
@@ -29,6 +29,7 @@
 
 		vm.getBookmarks = getBookmarks;
 		vm.createBookmark = createBookmark;
+		vm.removeBookmark = removeBookmark;
 
 		/**
 		 * Get all bookmarks
@@ -42,9 +43,31 @@
 		 * Create new bookmark
 		 * @param bookmark
 		 */
-		function createBookmark(bookmark) {
-			bookmark.id = bookmarks.length;
-			bookmarks.push(bookmark);
+		function createBookmark(bookmark, categories) {
+			if(categories.length) {
+				_.forEach(categories, item => {
+					let current = angular.copy(bookmark);
+					current.id = bookmarks.length;
+					current.category = item;
+					bookmarks.push(current);
+					ActivityServices.addActivity(current, 1);
+				});
+
+				$rootScope.$emit('countBookmarks', bookmarks.length);
+			} else {
+				bookmark.id = bookmarks.length;
+				bookmarks.push(bookmark);
+				ActivityServices.addActivity(bookmark, 1);
+			}
+			// $rootScope.$emit('countBookmarks', bookmarks.length);
+		}
+
+		/**
+		 * Remove bookmark
+		 * @param bookmark
+		 */
+		function removeBookmark(bookmark) {
+			_.remove(bookmarks, item => item.id == bookmark.id);
 			$rootScope.$emit('countBookmarks', bookmarks.length);
 		}
 	}
