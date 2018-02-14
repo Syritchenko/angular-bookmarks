@@ -18,19 +18,21 @@
 		 * @param type
 		 */
 		function addActivity(item, type) {
-			item.date = new Date();
-			item.type = type;
+			let current = angular.copy(item);
+			current.id = activity.length;
+			current.date = new Date();
+			current.type = type;
 
 			switch (type) {
-				case 1: item.desc = 'added bookmark';
+				case 1: current.desc = 'added bookmark';
 				break;
-				case 2: item.desc = 'updated bookmark';
+				case 2: current.desc = 'updated bookmark';
 				break;
-				case 3: item.desc = 'deleted bookmark';
+				case 3: current.desc = 'deleted bookmark';
 				break;
 			}
 
-			activity.push(item);
+			activity.push(current);
 		}
 
 		/**

@@ -17,7 +17,6 @@
 				autocomplete="off"
 				validation-url
 				ng-model="$ctrl.newBookmark.url"
-				ng-model-options="{ updateOn: 'blur' }"
 				placeholder="Url Bookmark"
 				required>
 			<span class="error" ng-show="addBookmark.url.$error.url">Your url must start from 'http://' or 'https://'</span>
