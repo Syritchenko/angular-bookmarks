@@ -101,9 +101,19 @@
 
 	const activity = {
 		templateUrl: '/app/modules/core/components/activity.html',
-		controller: function (ActivityServices) {
+		controller: function (ActivityServices, actionsType) {
 			let vm = this;
 			vm.activities = ActivityServices.getAllActivities();
+
+			vm.isActivityType = isActivityType;
+
+			function isActivityType(item) {
+				switch(item.type) {
+					case actionsType.add: return 'added';
+					case actionsType.update: return 'updated';
+					case actionsType.remove: return 'removed';
+				}
+			}
 		}
 
 	};

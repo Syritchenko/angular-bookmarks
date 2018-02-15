@@ -2,14 +2,13 @@
 	<div class="inner-wrap">
 		<div class="bookmark-item"
 		     ng-repeat="bookmark in $ctrl.bookmarks | bookmarkFilter"
-		     context-menu="editOptions" ng-cloak>
+		     context-menu="$ctrl.editOptions" ng-cloak>
 			<a class="bookmark-item-link" href="{{bookmark.url}}">
 				<i class="fa fa-book" aria-hidden="true"></i>
 				{{ bookmark.title }}
 			</a>
 
-			<i class="fa fa-cog" aria-hidden="true" ng-click="$ctrl.editBookmark(bookmark)"></i>
-			<i class="fa fa-trash" aria-hidden="true" ng-click="$ctrl.removeBookmark(bookmark)"></i>
+			<i class="fa fa-ellipsis-v" aria-hidden="true" context-menu="$ctrl.editOptions" context-menu-on="click"></i>
 		</div>
 
 		<div class="bookmark-item" ng-if="($ctrl.bookmarks | bookmarkFilter).length == 0">

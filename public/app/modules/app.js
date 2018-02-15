@@ -7,6 +7,7 @@
 		'ngDialog',
 		'ui-notification',
 		'multipleSelect',
+		'ui.bootstrap.contextMenu',
 
 		// Filters
 		'app.filterBookmarks',
@@ -35,6 +36,11 @@
 				positionX: 'right',
 				positionY: 'top'
 			});
+		})
+		.constant('actionsType', {
+			add: 1,
+			update: 2,
+			remove: 3
 		})
 	;
 

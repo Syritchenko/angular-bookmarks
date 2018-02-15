@@ -6,7 +6,7 @@
 		.service('BookmarksService', BookmarksService)
 	;
 
-	function BookmarksService ($rootScope, ActivityServices, $http, $q) {
+	function BookmarksService ($rootScope, ActivityServices, $http, $q, actionsType) {
 		let vm = this,
 			bookmarks;
 
@@ -50,14 +50,14 @@
 					current.id = bookmarks.length;
 					current.category = item;
 					bookmarks.push(current);
-					ActivityServices.addActivity(current, 1);
+					ActivityServices.addActivity(current, actionsType.add);
 				});
 
 				$rootScope.$emit('countBookmarks', bookmarks.length);
 			} else {
 				bookmark.id = bookmarks.length;
 				bookmarks.push(bookmark);
-				ActivityServices.addActivity(bookmark, 1);
+				ActivityServices.addActivity(bookmark, actionsType.add);
 			}
 			// $rootScope.$emit('countBookmarks', bookmarks.length);
 		}

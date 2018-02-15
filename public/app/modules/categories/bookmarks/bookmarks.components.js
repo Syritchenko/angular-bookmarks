@@ -3,7 +3,7 @@
 
 	const bookmarksList = {
 		templateUrl: '/app/modules/categories/bookmarks/list.html',
-		controller: function ($rootScope, $state, ngDialog, Notification, BookmarksService, ActivityServices) {
+		controller: function ($rootScope, $state, ngDialog, Notification, BookmarksService, ActivityServices, actionsType) {
 			"ngInject";
 
 			let vm = this;
@@ -17,8 +17,79 @@
 					$rootScope.$emit('countBookmarks', vm.bookmarks.length);
 				});
 
-			vm.editBookmark = editBookmark;
-			vm.removeBookmark = removeBookmark;
+			vm.editOptions = [
+				{
+					text: 'Edit',
+
+					/**
+					 * Update current bookmark
+					 * @param $itemScope
+					 */
+					click: ($itemScope) => {
+						ngDialog.open({
+							template: '/app/modules/categories/bookmarks/edit.html',
+							className: 'ngdialog-theme-default',
+							controller: function () {
+								let vm = this;
+
+								vm.editedBookmark = angular.copy($itemScope.bookmark);
+
+								vm.updateCurrentBookmark = updateCurrentBookmark;
+
+								// Update current bookmark
+								function updateCurrentBookmark(item) {
+									updateBookmark(item);
+								}
+							},
+							controllerAs: '$ctrl'
+						});
+					}
+				},
+
+				{
+					text: 'Remove',
+
+					/**
+					 * Remove bookmark
+					 * @param $itemScope
+					 */
+					click: ($itemScope) => {
+						ngDialog.open({
+							template: '/app/modules/categories/bookmarks/dialog/confirmation.html',
+							className: 'ngdialog-theme-default',
+							controller: function () {
+								let vm = this;
+
+								vm.confirm = confirm;
+
+								function confirm() {
+									BookmarksService.removeBookmark($itemScope.bookmark);
+									Notification.success('You success have deleted bookmark!');
+									ActivityServices.addActivity($itemScope.bookmark, actionsType.remove);
+
+									// Activity method with $emit
+									// $rootScope.$emit('removeBookmarks', currentBookmark);
+								}
+							},
+							controllerAs: '$ctrl'
+						});
+					}
+				},
+				{
+					text: 'Move',
+					click: ($itemScope) => {
+						ngDialog.open({
+							template: '',
+							className: 'ngdialog-theme-default',
+							controller: function () {
+
+							},
+							controllerAs: '$ctrl'
+						})
+					}
+				}
+
+			];
 
 			/**
 			 * Update bookmark
@@ -30,61 +101,10 @@
 				vm.bookmarks[index] = bookmark;
 				Notification.success('You success have updated bookmark!');
 
-				ActivityServices.addActivity(bookmark, 2);
+				ActivityServices.addActivity(bookmark, actionsType.update);
 
 				// Activity method with $emit
 				// $rootScope.$emit('updateBookmarks', bookmark);
-			}
-
-			/**d
-			 * Edit bookmark
-			 * @param bookmark
-			 */
-			function editBookmark(bookmark) {
-				ngDialog.open({
-					template: '/app/modules/categories/bookmarks/edit.html',
-					className: 'ngdialog-theme-default',
-					controller: function () {
-						let vm = this;
-
-						vm.editedBookmark = angular.copy(bookmark);
-
-						vm.updateCurrentBookmark = updateCurrentBookmark;
-
-						// Update current bookmark
-						function updateCurrentBookmark(item) {
-							updateBookmark(item);
-						}
-					},
-					controllerAs: '$ctrl'
-				});
-			}
-
-			/**
-			 * Remove bookmark
-			 * @param bookmark
-			 */
-			function removeBookmark(bookmark) {
-				var currentBookmark = bookmark;
-				ngDialog.open({
-					template: '/app/modules/categories/bookmarks/dialog/confirmation.html',
-					className: 'ngdialog-theme-default',
-					controller: function () {
-						let vm = this;
-
-						vm.confirm = confirm;
-
-						function confirm() {
-							BookmarksService.removeBookmark(currentBookmark);
-							Notification.success('You success have deleted bookmark!');
-							ActivityServices.addActivity(currentBookmark, 3);
-
-							// Activity method with $emit
-							// $rootScope.$emit('removeBookmarks', currentBookmark);
-						}
-					},
-					controllerAs: '$ctrl'
-				});
 			}
 		}
 	};
