@@ -16,22 +16,22 @@
 		return items => {
 			let filtered = [];
 
-			if(!CategoriesService.currentCategory.name) {
+			if(BookmarksService.newValBoomark) {
+				let value = BookmarksService.newValBoomark;
+				let regexp = new RegExp(value, 'gi');
+
+				_.forEach(items, item => {
+					if(item.title.match(regexp)) {
+						filtered.push(item);
+					}
+				});
+			} else if(!CategoriesService.currentCategory.name) {
 				_.forEach(items, item => {
 					filtered.push(item);
 				});
 			} else if(!BookmarksService.newValBoomark && CategoriesService.currentCategory.name) {
 				_.forEach(items, item => {
 					if(item.category === CategoriesService.currentCategory.name) {
-						filtered.push(item);
-					}
-				});
-			} else {
-				let value = BookmarksService.newValBoomark;
-				let regexp = new RegExp(value, 'gi');
-
-				_.forEach(items, item => {
-					if(item.title.match(regexp)) {
 						filtered.push(item);
 					}
 				});
