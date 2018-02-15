@@ -8,16 +8,14 @@
 
 	function CategoriesService ($http, $q) {
 		let vm = this,
-			categories;
-
-		// Default current category
-		vm.currentCategory = {name: ''};
+			categories,
+			currentCategory;
 
 		/**
 		 * Extract our data before transfer to component
  		 */
-		function extract(result) {
-			return result.data;
+		function extract({data}) {
+			return data;
 		}
 
 		/**
@@ -34,6 +32,8 @@
 		vm.setCurrentCategory = setCurrentCategory;
 		vm.isCurrentCategory = isCurrentCategory;
 
+
+
 		/**
 		 * Get all categories
 		 * @returns {*}
@@ -47,7 +47,7 @@
 		 * @param category
 		 */
 		function setCurrentCategory(category) {
-			vm.currentCategory = category;
+			currentCategory = category;
 		}
 
 		/**
@@ -55,8 +55,8 @@
 		 * @param category
 		 * @returns {*|boolean}
 		 */
-		function isCurrentCategory(category) {
-			return category && category.name === vm.currentCategory.name;
+		function isCurrentCategory(category = {}) {
+			return _.get(category, 'name') === _.get(currentCategory, 'name');
 		}
 	}
 })();

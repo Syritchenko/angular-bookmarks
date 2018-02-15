@@ -13,8 +13,8 @@
 		/**
 		 * Extract our data before transfer to component
 		 */
-		function extract(result) {
-			return result.data;
+		function extract({data}) {
+			return data;
 		}
 
 		/**

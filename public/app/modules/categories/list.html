@@ -1,10 +1,10 @@
 <aside class="menu">
 	<ul class="menu-list">
-		<li class="menu-list-item" ng-class=" {active: $ctrl.checkCurrentCategory({name: ''})} ">
+		<li class="menu-list-item" ng-class=" {active: $ctrl.checkCurrentCategory()} ">
 			<a
 				class="menu-list-link"
 				ui-sref="app.categories.bookmarks({category: 'All'})"
-				ng-click="$ctrl.getCurrentCategory({name: ''})">
+				ng-click="$ctrl.getCurrentCategory()">
 
 				<i class="fa fa-folder" aria-hidden="true"></i>
 				<i class="fa fa-folder-o" aria-hidden="true"></i>

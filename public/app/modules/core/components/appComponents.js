@@ -103,7 +103,6 @@
 		templateUrl: '/app/modules/core/components/activity.html',
 		controller: function (ActivityServices) {
 			let vm = this;
-			vm.activities = [];
 			vm.activities = ActivityServices.getAllActivities();
 		}
 
