@@ -11,14 +11,14 @@
 			CategoriesService.getCategories()
 				.then(categories => vm.categories = categories);
 
-			vm.getCurrentCategory = getCurrentCategory;
+			vm.setCurrentCategory = setCurrentCategory;
 			vm.checkCurrentCategory = checkCurrentCategory;
 
 			/**
 			 * Get current category
 			 * @param category
 			 */
-			function getCurrentCategory(category) {
+			function setCurrentCategory(category) {
 				CategoriesService.setCurrentCategory(category);
 			}
 

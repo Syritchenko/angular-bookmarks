@@ -29,6 +29,7 @@
 		}
 
 		vm.getCategories = getCategories;
+		vm.getCurrentCategory = getCurrentCategory;
 		vm.setCurrentCategory = setCurrentCategory;
 		vm.isCurrentCategory = isCurrentCategory;
 
@@ -40,6 +41,10 @@
 		 */
 		function getCategories() {
 			return (categories) ? $q.when(categories) : $http.get('data/categories.json').then(cacheCategories);
+		}
+
+		function getCurrentCategory () {
+			return currentCategory;
 		}
 
 		/**

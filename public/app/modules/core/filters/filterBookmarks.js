@@ -25,13 +25,13 @@
 						filtered.push(item);
 					}
 				});
-			} else if(!CategoriesService.currentCategory.name) {
+			} else if(!CategoriesService.getCurrentCategory()) {
 				_.forEach(items, item => {
 					filtered.push(item);
 				});
-			} else if(!BookmarksService.newValBoomark && CategoriesService.currentCategory.name) {
+			} else if(!BookmarksService.newValBoomark && CategoriesService.getCurrentCategory()) {
 				_.forEach(items, item => {
-					if(item.category === CategoriesService.currentCategory.name) {
+					if(item.category === CategoriesService.getCurrentCategory().name) {
 						filtered.push(item);
 					}
 				});

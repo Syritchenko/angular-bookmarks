@@ -68,13 +68,13 @@
 						let vm = this;
 
 						vm.newBookmark = {};
-						vm.currentCategory = CategoriesService.currentCategory.name;
+						// vm.currentCategory = CategoriesService.getCurrentCategory().name;
 						vm.categoriesList = [];
 						vm.selectedList = [];
 
 						// Check active category
 						if(vm.currentCategory) {
-							vm.newBookmark.category = CategoriesService.currentCategory.name;
+							vm.newBookmark.category = CategoriesService.getCurrentCategory().name;
 						}
 
 						CategoriesService.getCategories()

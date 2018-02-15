@@ -4,7 +4,7 @@
 			<a
 				class="menu-list-link"
 				ui-sref="app.categories.bookmarks({category: 'All'})"
-				ng-click="$ctrl.getCurrentCategory()">
+				ng-click="$ctrl.setCurrentCategory()">
 
 				<i class="fa fa-folder" aria-hidden="true"></i>
 				<i class="fa fa-folder-o" aria-hidden="true"></i>
@@ -15,7 +15,7 @@
 			<a
 				class="menu-list-link"
 				ui-sref="app.categories.bookmarks({category: category.name})"
-				ng-click="$ctrl.getCurrentCategory(category)">
+				ng-click="$ctrl.setCurrentCategory(category)">
 
 				<i class="fa fa-folder" aria-hidden="true"></i>
 				<i class="fa fa-folder-o" aria-hidden="true"></i>
