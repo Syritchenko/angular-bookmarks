@@ -4,13 +4,15 @@
 		.service('ActivityServices', ActivityServices)
 	;
 
-	function ActivityServices() {
+	function ActivityServices(actionsType) {
+		let activity = [];
 
-		let vm = this,
-			activity = [];
+		let service = {
+			addActivity: addActivity,
+			getAllActivities: getAllActivities
+		};
 
-		vm.addActivity = addActivity;
-		vm.getAllActivities = getAllActivities;
+		 return service;
 
 		/**
 		 * Add new activity
@@ -24,12 +26,15 @@
 			current.type = type;
 
 			switch (type) {
-				case 1: current.desc = 'added bookmark';
+				case actionsType.add: current.desc = 'added bookmark';
 				break;
-				case 2: current.desc = 'updated bookmark';
+				case actionsType.update: current.desc = 'updated bookmark';
 				break;
-				case 3: current.desc = 'deleted bookmark';
+				case actionsType.move: current.desc = 'move bookmark';
 				break;
+				case actionsType.remove: current.desc = 'delete bookmark';
+				break;
+				default: current.desc = 'general description';
 			}
 
 			activity.push(current);

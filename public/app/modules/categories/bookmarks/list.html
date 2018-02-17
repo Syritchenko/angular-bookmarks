@@ -1,8 +1,10 @@
 <section class="bookmarks">
 	<div class="inner-wrap">
 		<div class="bookmark-item"
-		     ng-repeat="bookmark in $ctrl.bookmarks | bookmarkFilter"
-		     context-menu="$ctrl.editOptions" ng-cloak>
+		     ng-repeat="bookmark in $ctrl.bookmarks | bookmarkFilter | orderBy: $ctrl.sortBookmark()"
+		     context-menu="$ctrl.editOptions"
+		     context-menu-class="active"
+		     ng-cloak>
 			<a class="bookmark-item-link" href="{{bookmark.url}}">
 				<i class="fa fa-book" aria-hidden="true"></i>
 				{{ bookmark.title }}

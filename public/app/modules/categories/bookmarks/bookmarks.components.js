@@ -3,7 +3,7 @@
 
 	const bookmarksList = {
 		templateUrl: '/app/modules/categories/bookmarks/list.html',
-		controller: function ($rootScope, $state, ngDialog, Notification, BookmarksService, ActivityServices, actionsType) {
+		controller: function ($rootScope, ngDialog, Notification, BookmarksService, CategoriesService, ActivityServices, SortService, actionsType) {
 			"ngInject";
 
 			let vm = this;
@@ -17,6 +17,10 @@
 					$rootScope.$emit('countBookmarks', vm.bookmarks.length);
 				});
 
+			/**
+			 * Context menu for update, move and delete
+			 * @type {[null,null,null]}
+			 */
 			vm.editOptions = [
 				{
 					text: 'Edit',
@@ -27,7 +31,7 @@
 					 */
 					click: ($itemScope) => {
 						ngDialog.open({
-							template: '/app/modules/categories/bookmarks/edit.html',
+							template: '/app/modules/categories/bookmarks/dialog/edit.html',
 							className: 'ngdialog-theme-default',
 							controller: function () {
 								let vm = this;
@@ -43,6 +47,37 @@
 							},
 							controllerAs: '$ctrl'
 						});
+					}
+				},
+
+				{
+					text: 'Move',
+					click: ($itemScope) => {
+						ngDialog.open({
+							template: '/app/modules/categories/bookmarks/dialog/move.html',
+							className: 'ngdialog-theme-default',
+							controller: function () {
+								let vm = this;
+
+								vm.categoriesList = [];
+
+								CategoriesService.getCategories()
+									.then(categories => {
+										_.forEach(categories, item => {
+											if (item.name == $itemScope.bookmark.category) return;
+											vm.categoriesList.push(item.name)
+										});
+									});
+
+								vm.moveBookmark = moveBookmark;
+
+								function moveBookmark(value) {
+									$itemScope.bookmark.category = value;
+									moveCurrentBookmark($itemScope.bookmark);
+								}
+							},
+							controllerAs: '$ctrl'
+						})
 					}
 				},
 
@@ -66,30 +101,15 @@
 									BookmarksService.removeBookmark($itemScope.bookmark);
 									Notification.success('You success have deleted bookmark!');
 									ActivityServices.addActivity($itemScope.bookmark, actionsType.remove);
-
-									// Activity method with $emit
-									// $rootScope.$emit('removeBookmarks', currentBookmark);
 								}
 							},
 							controllerAs: '$ctrl'
 						});
 					}
-				},
-				{
-					text: 'Move',
-					click: ($itemScope) => {
-						ngDialog.open({
-							template: '',
-							className: 'ngdialog-theme-default',
-							controller: function () {
-
-							},
-							controllerAs: '$ctrl'
-						})
-					}
 				}
-
 			];
+
+			vm.sortBookmark = sortBookmark;
 
 			/**
 			 * Update bookmark
@@ -102,9 +122,25 @@
 				Notification.success('You success have updated bookmark!');
 
 				ActivityServices.addActivity(bookmark, actionsType.update);
+			}
 
-				// Activity method with $emit
-				// $rootScope.$emit('updateBookmarks', bookmark);
+			/**
+			 * Move current bookmark
+			 * @param bookmark
+			 */
+			function moveCurrentBookmark(bookmark) {
+				let index = _.findIndex(vm.bookmarks, item => item.id == bookmark.id);
+				vm.bookmarks[index] = bookmark;
+				Notification.success('You success have moved bookmark!');
+				ActivityServices.addActivity(bookmark, actionsType.move);
+			}
+
+			/**
+			 * Sort bookmark
+			 * @returns {*}
+			 */
+			function sortBookmark() {
+				return SortService.setSortValue();
 			}
 		}
 	};

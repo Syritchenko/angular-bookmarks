@@ -8,6 +8,7 @@
 .bookmark-item {
     padding: 15px;
 
+    &.context,
     &:hover {
         background-color: rgba(51, 103, 214, 0.1);
     }

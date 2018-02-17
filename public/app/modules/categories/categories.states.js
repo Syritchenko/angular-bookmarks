@@ -3,7 +3,7 @@
 
 	angular
 		.module('app.categories.states', [
-			'app.categories.services',
+			'app.categories.service',
 			'app.categories.components'
 		])
 

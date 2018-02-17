@@ -7,9 +7,15 @@
 	;
 
 	function BookmarksService ($rootScope, ActivityServices, $http, $q, actionsType) {
-		let vm = this,
-			bookmarks;
+		let bookmarks;
 
+		let service = {
+			getBookmarks: getBookmarks,
+			createBookmark: createBookmark,
+			removeBookmark: removeBookmark
+		};
+
+		return service;
 		/**
 		 * Extract our data before transfer to component
 		 */
@@ -26,10 +32,6 @@
 			bookmarks = extract(result);
 			return bookmarks;
 		}
-
-		vm.getBookmarks = getBookmarks;
-		vm.createBookmark = createBookmark;
-		vm.removeBookmark = removeBookmark;
 
 		/**
 		 * Get all bookmarks

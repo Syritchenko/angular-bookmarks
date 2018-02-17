@@ -3,7 +3,7 @@
 
 	const categoriesList = {
 		templateUrl: '/app/modules/categories/list.html',
-		controller: function ($state, CategoriesService) {
+		controller: function ($rootScope, CategoriesService) {
 			"ngInject";
 
 			let vm = this;
@@ -20,6 +20,7 @@
 			 */
 			function setCurrentCategory(category) {
 				CategoriesService.setCurrentCategory(category);
+				$rootScope.$emit('clearSearch', '');
 			}
 
 			/**

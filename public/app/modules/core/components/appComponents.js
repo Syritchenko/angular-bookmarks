@@ -11,6 +11,9 @@
 
 			vm.countCategories = 0;
 
+			/**
+			 * Update count of bookmarks
+			 */
 			$rootScope.$on('countBookmarks', (event, data) => {
 				vm.countCategories = data;
 			});
@@ -43,10 +46,54 @@
 
 	const appHeader = {
 		templateUrl: '/app/modules/core/components/header.html',
-		controller: function($rootScope, CategoriesService, BookmarksService, ActivityServices, ngDialog, Notification) {
+		controller: function($rootScope, CategoriesService, BookmarksService, SortService, ngDialog, Notification, sortValue) {
 			let vm = this;
 
-			vm.openDialog = openDialog;
+			vm.contextActions = [
+				{
+					text: 'SortBy: name',
+					click: () => {
+						SortService.setSortValue() ? SortService.getSortValue('') : SortService.getSortValue(sortValue.name);
+					}
+				},
+				{
+					text: 'Add new bookmark',
+					click: () => {
+						ngDialog.open({
+							template: '/app/modules/core/components/addBookmark.html',
+							className: 'ngdialog-theme-default',
+							controller: function () {
+								let vm = this;
+
+								vm.newBookmark = {};
+								vm.categoriesList = [];
+
+								// Check active category
+								if(vm.currentCategory) {
+									vm.newBookmark.category = CategoriesService.getCurrentCategory().name;
+								}
+
+								CategoriesService.getCategories()
+									.then(categories => {
+										_.forEach(categories, item => vm.categoriesList.push(item.name));
+									});
+
+								vm.createBookmark = createBookmark;
+
+								/**
+								 * Create new bookmark
+								 */
+								function createBookmark() {
+									BookmarksService.createBookmark(vm.newBookmark, vm.selectedList);
+									Notification.success('You success have added new bookmark!');
+								}
+							},
+							controllerAs: '$ctrl'
+						});
+					}
+				}
+			];
+
 			vm.searchChange = searchChange;
 
 			/**
@@ -58,44 +105,12 @@
 			}
 
 			/**
-			 * Open dialog for add bookmark
+			 * Clear search bookmark
 			 */
-			function openDialog() {
-				ngDialog.open({
-					template: '/app/modules/core/components/addBookmark.html',
-					className: 'ngdialog-theme-default',
-					controller: function () {
-						let vm = this;
-
-						vm.newBookmark = {};
-						// vm.currentCategory = CategoriesService.getCurrentCategory().name;
-						vm.categoriesList = [];
-						vm.selectedList = [];
-
-						// Check active category
-						if(vm.currentCategory) {
-							vm.newBookmark.category = CategoriesService.getCurrentCategory().name;
-						}
-
-						CategoriesService.getCategories()
-							.then(categories => {
-								vm.categories = categories;
-								_.forEach(vm.categories, item => vm.categoriesList.push(item.name));
-							});
-
-						vm.createBookmark = createBookmark;
-
-						/**
-						 * Create new bookmark
-						 */
-						function createBookmark() {
-							BookmarksService.createBookmark(vm.newBookmark, vm.selectedList);
-							Notification.success('You success have added new bookmark!');
-						}
-					},
-					controllerAs: '$ctrl'
-				});
-			}
+			$rootScope.$on('clearSearch', (event, data) => {
+				vm.searchBookmark = data;
+				BookmarksService.newValBoomark = data;
+			});
 		}
 	};
 
@@ -107,10 +122,16 @@
 
 			vm.isActivityType = isActivityType;
 
+			/**
+			 * Add class for activity
+			 * @param item
+			 * @returns {*}
+			 */
 			function isActivityType(item) {
 				switch(item.type) {
 					case actionsType.add: return 'added';
 					case actionsType.update: return 'updated';
+					case actionsType.move: return 'moved';
 					case actionsType.remove: return 'removed';
 				}
 			}

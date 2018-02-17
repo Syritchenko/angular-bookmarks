@@ -1,0 +1,20 @@
+<form role="form" name="addBookmark" ng-submit="closeThisDialog(); $ctrl.moveBookmark(category)">
+	<div class="field">
+		<label class="label" for="category">Category</label>
+		<div class="control">
+			<select class="input" type="text" id="category" placeholder="category" ng-model="category" required>
+				<option value="">-&#45;&#45;Please select-&#45;&#45;</option>
+				<option ng-repeat="option in $ctrl.categoriesList" ng-value="option">{{ option }}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="field is-grouped">
+		<div class="control">
+			<button type="submit" class="button is-link" ng-disabled="addBookmark.$invalid">Add</button>
+		</div>
+		<div class="control">
+			<button type="button" class="button is-text" ng-click="closeThisDialog()">Cancel</button>
+		</div>
+	</div>
+</form>

@@ -69,6 +69,10 @@
         .updated {
             color: #d1ad27;
         }
+
+        .moved {
+            color: #4680d1;
+        }
         
         .added {
             color: #4eb155;
@@ -83,5 +87,12 @@
 
     &:before {
         content: '\f00d';
+    }
+}
+
+.dropdown-menu {
+    &:after {
+        content: '';
+
     }
 }

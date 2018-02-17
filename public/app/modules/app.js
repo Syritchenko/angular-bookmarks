@@ -17,6 +17,7 @@
 
 		// Services
 		'app.activity.services',
+		'app.sort.service',
 
 		// States
 		'app.categories.states',
@@ -40,7 +41,11 @@
 		.constant('actionsType', {
 			add: 1,
 			update: 2,
-			remove: 3
+			move: 3,
+			remove: 4
+		})
+		.constant('sortValue', {
+			name: 'title'
 		})
 	;
 

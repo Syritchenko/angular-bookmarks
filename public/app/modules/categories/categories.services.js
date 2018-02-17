@@ -2,14 +2,22 @@
 	'use strict';
 
 	angular
-		.module('app.categories.services', [])
+		.module('app.categories.service', [])
 		.service('CategoriesService', CategoriesService)
 	;
 
 	function CategoriesService ($http, $q) {
-		let vm = this,
-			categories,
+		let categories,
 			currentCategory;
+
+		let service = {
+			getCategories: getCategories,
+			getCurrentCategory: getCurrentCategory,
+			setCurrentCategory: setCurrentCategory,
+			isCurrentCategory: isCurrentCategory
+		};
+
+		return service;
 
 		/**
 		 * Extract our data before transfer to component
@@ -27,13 +35,6 @@
 			categories = extract(result);
 			return categories;
 		}
-
-		vm.getCategories = getCategories;
-		vm.getCurrentCategory = getCurrentCategory;
-		vm.setCurrentCategory = setCurrentCategory;
-		vm.isCurrentCategory = isCurrentCategory;
-
-
 
 		/**
 		 * Get all categories

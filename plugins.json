@@ -22,6 +22,7 @@
       "app/modules/core/filters/filterBookmarks.js",
       "app/modules/core/directives/validation.js",
       "app/modules/core/services/activity.services.js",
+      "app/modules/core/services/sort.service.js",
       "app/modules/core/components/appComponents.js",
       "app/modules/categories/categories.states.js",
       "app/modules/categories/categories.services.js",
